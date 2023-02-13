@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% block jquery %}
+    <script src="../static/js/script_stp.js"></script>
+{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+	<div id="scraped_data_div" class="row">
+		<div class="col-md text-center">		
+			<h1>Data<h1>
+		</div>
+		<div class="row justify-content-center mt-4">
+			<div class="col text-center">
+				<button id="back_btn" class="btn btn-color">Back</button>
+			</div>
+			<div class="col text-center">
+				<a href="/download" target="_blank">
+					<button id="download_btn" class="btn btn-color">CSV</button>
+				</a>
+			</div>
+			<div class="col text-center">
+				<button id="save_btn" class="btn btn-color">Save</button>
+			</div>
+		</div>
+		<div class="row gy-3">
+			<div id="scrape_time_display" class="col">
+			</div>
+		</div>
+		<div class="row gy-3">
+			<div id="scraped_data_display" class="col">
+			</div>
+		</div>
+	</div>
+	<div id="setup_display" class="row">
+		<div class="col">
+			<div class="row">
+				<div class="col-md text-center">		
+					<h1><a href="/" class="link-dark">Setup</a></h1>
+				</div>
+			<div class="row gy-3 setup-color border">
+				<div class="col">		
+					<form class="form-control-lg w-100" action="/scrape" method="post">
+						<div class="container">
+							<div class="row row-cols-3">
+								<div class="col text-center"> 
+									<div class="form-check-inline">
+										<input class="form-check-input" type="checkbox" value="hardverapro" id="hardverapro" name="hardverapro">
+										<label class="form-check-label" for="hardverapro">
+											Hardverapro
+										</label>
+									</div>
+								</div>
+								<div class="col text-center">
+									<div class="form-check-inline">
+										<input class="form-check-input" type="checkbox" value="jofogas" id="jofogas" name="jofogas">
+										<label class="form-check-label" for="jofogas">
+											Jofogas
+										</label>
+									</div>
+								</div>
+								<div class="col text-center">
+									<div class="form-check-inline">
+										<input class="form-check-input" type="checkbox" value="marketplace" id="marketplace" name="marketplace">
+										<label class="form-check-label" for="marketplace">
+											Marketplace
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="row justify-content-center mt-5">
+								<div class="col-sm-10 col-md-7 col-lg-5">
+									<div class="input-group">
+										<span class="input-group-text span-color">Product name</span>
+										<input id="product_name" type="text" name="product_name" class="form-control text-center input-field-color">
+									</div>
+								</div>
+							</div>
+							<div class="row justify-content-center mt-5">
+								<div class="col-sm-8 col-md-5 col-lg-3">
+									<div class="input-group">
+										<span class="input-group-text span-color">Price min</span>
+										<input id="price_min" type="number" name="price_min" class="form-control text-center input-field-color">
+										<span class="input-group-text span-color">Ft</span>
+									</div>
+								</div>
+							</div>
+							<div class="row justify-content-center mt-5">
+								<div class="col-sm-8 col-md-5 col-lg-3">
+									<div class="input-group">
+										<span class="input-group-text span-color">Price max</span>
+										<input id="price_max" type="number" name="price_max" class="form-control text-center input-field-color">
+										<span class="input-group-text span-color">Ft</span>
+									</div>
+								</div>
+							</div>
+							<div class="row justify-content-center mt-5">
+								<div class="col-sm-6 col-md-4 col-lg-2">
+									<div class="input-group">
+										<span class="input-group-text span-color">Quantity</span>
+										<input id="num_of_products" type="number" name="num_of_products" class="form-control text-center input-field-color">
+									</div>
+								</div>
+							</div>
+							<div class="row justify-content-center mt-5">
+								<div class="col-6 text-center">
+									<div class="form-check-inline">
+										<label class="form-check-label" for="display">
+											Display
+										</label>
+										<input class="form-check-input" type="checkbox" value="true" id="display" name="display">
+									</div>
+								</div>
+							</div>
+							<div id="submit_btn_row" class="row mt-5">
+								<div class="col text-center">
+									<button id="submit_btn" class="btn btn-color border mb-4" type="submit">Start</button> 
+								</div>
+							</div>
+							<div id="loader" class="row mt-5">
+								<div class="col text-center">
+									<div class="spinner-border text-primary" role="status">
+										<span class="visually-hidden">Loading...</span>
+									</div>
+								</div>
+							</div>
+							<div id="success_display" class="row justify-content-center mt-5">
+								<div class="col-6 text-center">
+									<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+										<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+											<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+										</symbol>
+									</svg>
+									<div class="alert alert-success d-flex align-items-center" role="alert">
+										<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+										<div>
+											Success!
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

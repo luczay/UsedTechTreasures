@@ -1,0 +1,77 @@
+.navbar-color {
+    background-color: #fbfbf2;
+}
+
+.setup-color {
+    background-color: #fbfbf2;
+}
+
+body {
+    background-color: #e5e6e4;
+}
+
+h1 a{
+    text-decoration: none !important;
+}
+
+.span-color {
+    background-color: rgba(229, 230, 228, 0.3);
+}
+
+.input-field-color {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+.btn-color {
+    background-color: rgba(229, 230, 228, 0.3);
+}
+
+.btn:hover {
+    background-color:  rgba(229, 230, 228, 0.7);
+}
+
+#content {
+    table-layout: fixed;
+}
+
+#scraped_data_div {
+    display: none;
+}
+
+#setup_display {
+    display: block;
+}
+
+#submit_btn_row {
+    display: flex;
+}
+
+#loader {
+    display: none;
+}
+
+#success_display {
+    display: none;
+}
+
+.table {
+    background-color: rgba(229, 230, 228, 0.3);
+}
+
+.table tr > td:hover {
+    overflow: visible;
+    word-wrap: break-word;
+    white-space: unset;
+}
+
+.table td {
+    text-align: center;  
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-overflow: ellipsis; 
+ }
+
+ .table th {
+    text-align: center;  
+    background-color: rgba(229, 230, 228, 0.7);
+ }
