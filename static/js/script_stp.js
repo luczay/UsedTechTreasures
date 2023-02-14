@@ -114,29 +114,38 @@ function save() {
 };
 
 function inputValidation(hardverapro, jofogas, marketplace, number_of_products, product_name, price_min, price_max) {
+    var valid = true;
     if ((hardverapro == '') && (jofogas == '') && (marketplace == '')) {
        alert('Pick at least one site to scrape!');
-       return false;
+       valid = false;
     } else if (product_name == '') {
         alert('Scraping is not possible without a product name!')
-        return false;
+        valid = false;
     } else if (price_min == '') {
         alert('Scraping is not possible without a minimum price!')
-        return false;
+        valid = false;
     } else if (price_max == '') {
         alert('Scraping is not possible without a maximum price!')
-        return false;
+        valid = false;
     } else if (number_of_products == '') {
         alert('Scraping is not possible without a quantity!')
-        return false;
+        valid = false;
+    }
+
+    if (!valid) {
+        return valid;
     }
 
     if (!$.isNumeric(price_min) || !$.isNumeric(price_max)) {
         alert('Price must be a number!')
-        return false;
+        valid = false;
     } else if (!$.isNumeric(number_of_products)) {
         alert('Quantity must be a number!')
-        return false;
+        valid = false;
+    }
+
+    if (!valid) {
+        return valid;
     }
 
     price_min = parseInt(price_min)
@@ -145,11 +154,11 @@ function inputValidation(hardverapro, jofogas, marketplace, number_of_products, 
 
     if (price_min < 0 || price_max < 0 || number_of_products < 0) {
         alert('Quantity, minimum price and maximum price must be a positive number!')
-        return false;
+        valid = false;
     } else if (price_min >= price_max) {
         alert("The minimum price must be smaller than the maximum!")
-        return false;
+        valid = false;
     }
 
-    return true;
+    return valid;
 };
