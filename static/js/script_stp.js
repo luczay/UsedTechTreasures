@@ -7,6 +7,7 @@ $(document).ready(function(e) {
 
     $('#back_btn').click(function(){
         $('#content').remove();
+        $('#time_est').remove();
         $('#scraped_data_div').css('display', 'none');
         $('#setup_display').css('display', 'block');
         $('#loader').css('display', 'none');
@@ -71,7 +72,7 @@ function scrape() {
     }
 
     var scraping_time_est = m_scraping_time_est + j_scraping_time_est + h_scraping_time_est
-    $('#estimation').append('<p>Estimated scraping time is ' + (scraping_time_est / 60).toFixed(1) + 'min</p>');
+    $('#estimation').append('<p id="time_est">Estimated scraping time is ' + (scraping_time_est / 60).toFixed(1) + 'min</p>');
 
     var start_time = new Date()
     $.ajax({
