@@ -35,11 +35,10 @@ class DataCleaner:
         try:
             if self.site == 'jofogas':
                 price = int(data.replace(' ', ''))
-            elif self.site == 'hardverapro' or self.site == 'marketplace':
-                data = data.replace(' ', '')
-                price = int(data.replace('Ft', ''))
             else:
-                price = int(data)
+                data = data.replace(' ', '')
+                data = data[0:(data.find('Ft') + 2)]
+                price = int(data.replace('Ft', ''))
         except ValueError:
             print('This data (price) caused a value error while trying to convert it to int : ' + data)
             price = 1
@@ -59,7 +58,7 @@ class DataCleaner:
                 listing_time_num = listing_time[0:listing_time.index(' ')]
             except ValueError:
                 print('This data caused a value error while trying to convert it to date: ' + listing_date)
-                return '1999-01-05'
+                return datetime.date.today().strftime('%Y-%m-%d')
 
             if any(word in listing_time_num for word in self._days.keys()):
                 listing_time_num = self._days[listing_time_num]
