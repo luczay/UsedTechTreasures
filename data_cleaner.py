@@ -32,12 +32,19 @@ class DataCleaner:
         """
             Clean the price data depending on the specified site.
         """
-        if self.site == 'jofogas':
-            data = data.replace(' ', '')
-        elif self.site == 'hardverapro' or self.site == 'marketplace':
-            data = data.replace(' ', '')
-            data = data.replace('Ft', '')
-        return int(data)
+        try:
+            if self.site == 'jofogas':
+                price = int(data.replace(' ', ''))
+            elif self.site == 'hardverapro' or self.site == 'marketplace':
+                data = data.replace(' ', '')
+                price = int(data.replace('Ft', ''))
+            else:
+                price = int(data)
+        except ValueError:
+            print('This data (price) caused a value error while trying to convert it to int : ' + data)
+            price = 1
+
+        return price
 
     def _date_from_words_marketplace(self, listing_date: str) -> str:
         """
@@ -51,7 +58,7 @@ class DataCleaner:
                 listing_time = listing_date[listing_date.index(' ') + 1:listing_date.index(",")]
                 listing_time_num = listing_time[0:listing_time.index(' ')]
             except ValueError:
-                print('This data caused a value error: ' + listing_date)
+                print('This data caused a value error while trying to convert it to date: ' + listing_date)
                 return '1999-01-05'
 
             if any(word in listing_time_num for word in self._days.keys()):
