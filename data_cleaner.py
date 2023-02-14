@@ -51,7 +51,7 @@ class DataCleaner:
                 listing_time = listing_date[listing_date.index(' ') + 1:listing_date.index(",")]
                 listing_time_num = listing_time[0:listing_time.index(' ')]
             except ValueError:
-                print(listing_date)
+                print('This data caused a value error: ' + listing_date)
                 return '1999-01-05'
 
             if any(word in listing_time_num for word in self._days.keys()):
