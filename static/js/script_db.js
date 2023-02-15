@@ -15,9 +15,7 @@ $(document).ready(function(e) {
         return false;
     });
 
-	$.post('/db_content', {}, function(respond) {
-		$('#db_data_display').append(respond.table);
-	});
+	search();
 });
 
 function clearDb() {
