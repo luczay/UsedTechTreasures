@@ -158,6 +158,7 @@ def search():
                     name LIKE %s 
                     AND (price BETWEEN %s AND %s)
                     AND (site = %s OR site = %s OR site = %s)
+                ORDER BY listed DESC
               """
         db.execute(sql, (f"%{product_name}%", price_min, price_max, jofogas, hardverapro, marketplace))
         result = db.fetchall()
