@@ -149,7 +149,7 @@ class ScrapeMarketplace(Scrape):
                     sleep(wait)
                     description = self._find_by_xpath(driver, '//ul/following-sibling::div//div//span', wait=4).text
                     wait += 1
-                    
+
                 return description
         except TimeoutException:
             return ''
