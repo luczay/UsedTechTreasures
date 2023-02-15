@@ -28,11 +28,25 @@ function clearDb() {
 };
 
 function search() {
+	if ($('#hardverapro').is(':checked')) {
+        var hardverapro = $('#hardverapro').val();
+    } else {
+        var hardverapro = '';
+    }
+    if ($('#jofogas').is(':checked')) {
+        var jofogas = $('#jofogas').val();
+    } else {
+        var jofogas = '';
+    }
+    if ($('#marketplace').is(':checked')) {
+        var marketplace = $('#marketplace').val();
+    } else {
+        var marketplace = '';
+    }
 	var product_name = $('#product_name').val();
-	var site = $('#site').val();
 	var price_range = $('#price_range').val();
 
-	$.post('/search', {product_name: product_name, site: site, price_range: price_range}, function(respond) {
+	$.post('/search', {product_name: product_name, price_range: price_range, jofogas: jofogas, marketplace: marketplace, hardverapro: hardverapro}, function(respond) {
 		$('.dataframe').remove();
 		$('#db_data_display').append(respond.table);
 	});
