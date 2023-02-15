@@ -106,6 +106,8 @@ def save_to_csv():
     if len(df.index) == 0:
         df = get_db_content('product')
 
+    df = df.drop(columns=['id'])
+
     df_csv = df.to_csv(sep=';', encoding='utf-16')
     output = make_response(df_csv)
     output.headers["Content-Disposition"] = "attachment; filename=scraped_data.csv"
