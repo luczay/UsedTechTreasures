@@ -5,16 +5,6 @@ $(document).ready(function(e) {
         return false;
     });
 
-    $('#back_btn').click(function(){
-        $('#content').remove();
-        $('#time_est').remove();
-        $('#scraped_data_div').css('display', 'none');
-        $('#setup_display').css('display', 'block');
-        $('#loader').css('display', 'none');
-        $('#submit_btn_row').css('display', 'block');
-        return false;
-    });
-
     $('#save_btn').click(function(){
         save();
         return false;
@@ -104,7 +94,7 @@ function scrape() {
             } else {
                 $('.success_display').css('display', 'flexbox');
             }
-    
+            
             $('submit_btn_row').css('display', 'flex');
             $('loader').css('display', 'none');
         }
@@ -115,7 +105,7 @@ function save() {
     $.post('/save', {}, function(respond) {
 		if (respond.is_done == 'true') {
             alert('Saved')
-            $('#save_btn').remove();
+            $('#save_btn').css('display', 'none');
             } else {
             alert('Something went wrong')
         }
