@@ -72,20 +72,6 @@ def database():
     return render_template('database.html')
 
 
-@app.route('/db_content', methods=['POST'])
-def db_content():
-    """
-        Get the content of the database
-    """
-    df = get_db_content()
-    df = df.drop(columns=['id'])
-
-    dict_for_json = {'table': df.to_html(table_id='content',
-                                         classes='table',
-                                         index=False)}
-    return dict_for_json
-
-
 @app.route('/clear', methods=['POST'])
 def clear():
     """
