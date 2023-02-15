@@ -41,6 +41,12 @@ function search() {
     } else {
         var marketplace = '';
     }
+
+	if ((hardverapro == '') && (jofogas == '') && (marketplace == '')) {
+		alert('Pick at least one site to search!');
+		return false;
+	}
+
 	var product_name = $('#product_name').val();
 	var price_range = $('#price_range').val();
 
