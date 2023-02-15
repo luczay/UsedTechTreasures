@@ -142,6 +142,12 @@ class ScrapeMarketplace(Scrape):
             elif name_of_data == 'site':
                 return 'marketplace'
             elif name_of_data == 'description':
-                return self._find_by_xpath(driver, '//ul/following-sibling::div//div//span', wait=4).text
+                description = self._find_by_xpath(driver, '//ul/following-sibling::div//div//span', wait=4).text
+                wait = 1
+                while (description is None or description == '') and wait < 6:
+                    sleep(wait)
+                    description = self._find_by_xpath(driver, '//ul/following-sibling::div//div//span', wait=4).text
+                    wait += 1
+                return description
         except TimeoutException:
             return ''
