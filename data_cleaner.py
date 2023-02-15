@@ -100,6 +100,6 @@ class DataCleaner:
     @staticmethod
     def clean_description(data: str) -> str:
         """
-           Removes newline characters from the specified description.
+           Removes newline characters.
         """
         return data.replace('\n', '')
