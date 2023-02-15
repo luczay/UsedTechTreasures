@@ -21,6 +21,12 @@ $(document).ready(function(e) {
     });
 });
 
+/**
+ * Performs web scraping based on user input and displays the results (if the user wants it).
+ *
+ * @function
+ * @returns {boolean} Returns `false` if input validation fails, otherwise returns nothing.
+ */
 function scrape() {
     if ($('#hardverapro').is(':checked')) {
         var hardverapro = $('#hardverapro').val();
@@ -43,6 +49,7 @@ function scrape() {
     var price_min = $('#price_min').val();
     var price_max = $('#price_max').val();
 
+    // Validate the input values using the inputValidation() function and return false if validation fails
     valid_inputs = inputValidation(hardverapro, jofogas, marketplace, number_of_products, product_name, price_min, price_max);
     if (!valid_inputs) {
         return false;
@@ -57,6 +64,8 @@ function scrape() {
         var display = '';
     }
 
+    // Estimate the scraping time for each website based on the number of products to be scraped
+    // est = load website/login/search/filter time + sleep times in an iteration * number of products
     var m_scraping_time_est = 0
     var j_scraping_time_est = 0 
     var h_scraping_time_est = 0
