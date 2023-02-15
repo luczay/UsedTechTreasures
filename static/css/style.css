@@ -1,78 +1,89 @@
-.navbar-color {
-    background-color: #fbfbf2;
-}
-
+/* Set common background color */
+.navbar-color,
 .setup-color {
     background-color: #fbfbf2;
 }
 
-body {
-    background-color: #e5e6e4;
-}
-
-h1 a{
-    text-decoration: none !important;
-}
-
-.span-color {
+/* Set common background color with opacity */
+.span-color,
+.btn-color,
+.table {
     background-color: rgba(229, 230, 228, 0.3);
 }
 
 .input-field-color {
     background-color: rgba(255, 255, 255, 0.7);
 }
-.btn-color {
-    background-color: rgba(229, 230, 228, 0.3);
-}
 
+/* Set hover styles for buttons */
 .btn:hover {
     background-color:  rgba(229, 230, 228, 0.7);
     color: black;
 }
 
-#content {
-    table-layout: fixed;
+/* Set default background and font colors for body */
+body {
+    background-color: #e5e6e4;
 }
 
-#scraped_data_div {
-    display: none;
+/* Remove underline from links within h1 */
+h1 a{
+    text-decoration: none !important;
 }
 
-#setup_display {
-    display: block;
-}
-
-#submit_btn_row {
-    display: flex;
-}
-
+/* Set styles for loading spinner */
 #loader {
     display: none;
 }
 
+/* Set styles for success message display */
 #success_display {
     display: none;
 }
 
+/* Set common styles for table */
 .table {
-    background-color: rgba(229, 230, 228, 0.3);
+    table-layout: fixed;
 }
 
+/* Set styles for table rows and cells */
 .table tr > td:hover {
     overflow: visible;
     word-wrap: break-word;
     white-space: unset;
 }
-
 .table td {
-    text-align: center;  
+    text-align: center;
     overflow: hidden;
     white-space: nowrap;
     word-break: keep-all;
     text-overflow: ellipsis; 
- }
+}
 
- .table th {
-    text-align: center;  
+/* Set styles for table headers */
+.table th {
+    text-align: center;
     background-color: rgba(229, 230, 228, 0.7);
- }
+}
+
+/* --- Layout --- */
+
+#content {
+    table-layout: fixed;
+}
+  
+#submit_btn_row {
+    display: flex;
+}
+  
+/* --- Display --- */
+  
+#scraped_data_div,
+#loader,
+#success_display {
+    display: none;
+}
+  
+#setup_display {
+    display: block;
+}
