@@ -134,8 +134,10 @@ def search():
         Queries the database to retrieve products that match the specified product name, website, and price range.
     """
     product_name = request.form.get('product_name')
-    site = request.form.get('site')
     price_range = request.form.get('price_range')
+    hardverapro = request.form.get('hardverapro')
+    jofogas = request.form.get('jofogas')
+    marketplace = request.form.get('marketplace')
 
     slice_at = price_range.find('-')
     if slice_at != -1:
@@ -153,9 +155,11 @@ def search():
                 SELECT *
                 FROM product
                 WHERE 
-                    name LIKE %s AND site LIKE %s AND price BETWEEN %s AND %s
+                    name LIKE %s 
+                    AND (price BETWEEN %s AND %s)
+                    AND (site = %s OR site = %s OR site = %s)
               """
-        db.execute(sql, (f"%{product_name}%", f"%{site}%", price_min, price_max))
+        db.execute(sql, (f"%{product_name}%", price_min, price_max, jofogas, hardverapro, marketplace))
         result = db.fetchall()
 
     df = pd.DataFrame(data=result, columns=['id'] + constants.columns)
