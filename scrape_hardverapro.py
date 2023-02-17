@@ -106,11 +106,6 @@ class ScrapeHardverapro(Scrape):
                     except StaleElementReferenceException:
                         continue
 
-                try:
-                    self._find_by_xpath(driver, '//a[@title="Kattints a teljes mérethez!"]')
-                except TimeoutException:
-                    self._find_by_xpath(driver, '//a[@title="Kattints a teljes mérethez!"]')
-
                 df.loc[len(df.index)] = [self._get_data('name'), self._get_data('link'),
                                          self._get_data('price'), self._get_data('listed'),
                                          self._get_data('site'), self._get_data('description')]
