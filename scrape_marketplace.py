@@ -30,6 +30,7 @@ class ScrapeMarketplace(Scrape):
         options.add_experimental_option("prefs", {"profile.default_content_setting_values.notifications": 1})
 
         self.driver = webdriver.Chrome(options=options, executable_path=constants.driver_path)
+        # It's a fake account for scraping purposes
         self.email = 'luczay99@freemail.hu'
         self.password = 'Never.Mind99'
         self.product_name = product_name
@@ -72,7 +73,6 @@ class ScrapeMarketplace(Scrape):
         self._find_by_xpath(driver, '//input[@placeholder="Min."]').send_keys(self.price_min)
         sleep(4)
         self._find_by_xpath(driver, '//input[@placeholder="Max."]').send_keys(self.price_max, Keys.ENTER)
-        sleep(4)  
 
     def _extract(self) -> pd.DataFrame:
         """
@@ -143,7 +143,7 @@ class ScrapeMarketplace(Scrape):
                 description = self._find_by_xpath(driver, '//ul/following-sibling::div//div//span', wait=4).text
 
                 time = 1
-                while (description is None or description == '') and wait < 6:
+                while (description is None or description == '') and time < 6:
                     sleep(time)
                     description = self._find_by_xpath(driver, '//ul/following-sibling::div//div//span', wait=4).text
                     time += 1
