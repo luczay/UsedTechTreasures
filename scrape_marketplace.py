@@ -72,7 +72,7 @@ class ScrapeMarketplace(Scrape):
         self._find_by_xpath(driver, '//input[@placeholder="Min."]').send_keys(self.price_min)
         sleep(4)
         self._find_by_xpath(driver, '//input[@placeholder="Max."]').send_keys(self.price_max, Keys.ENTER)
-        sleep(4)
+        sleep(4)  
 
     def _extract(self) -> pd.DataFrame:
         """
@@ -94,13 +94,12 @@ class ScrapeMarketplace(Scrape):
             if 'scontent' not in element.get_attribute('src'):
                 continue
 
-            sleep(1)
             try:
                 element.click()
             except (ElementClickInterceptedException, ElementNotInteractableException):
                 driver.execute_script('arguments[0].click()', element)
 
-            sleep(1)
+            sleep(2)
             df.loc[len(df.index)] = [self._get_data('name'), self._get_data('link'),
                                      self._get_data('price'), self._get_data('listed'),
                                      self._get_data('site'), self._get_data('description')]
@@ -109,7 +108,6 @@ class ScrapeMarketplace(Scrape):
                 driver.quit()
                 return df
 
-            sleep(2)
             driver.execute_script('window.history.go(-1)')
         return df
 
@@ -144,11 +142,11 @@ class ScrapeMarketplace(Scrape):
             elif name_of_data == 'description':
                 description = self._find_by_xpath(driver, '//ul/following-sibling::div//div//span', wait=4).text
 
-                wait = 1
+                time = 1
                 while (description is None or description == '') and wait < 6:
-                    sleep(wait)
+                    sleep(time)
                     description = self._find_by_xpath(driver, '//ul/following-sibling::div//div//span', wait=4).text
-                    wait += 1
+                    time += 1
 
                 return description
         except TimeoutException:
