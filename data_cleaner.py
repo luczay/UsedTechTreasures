@@ -24,6 +24,9 @@ class DataCleaner:
         if self.site == 'jofogas':
             return self._date_from_words_jofogas(data)
         elif self.site == 'hardverapro':
+            if data == '':
+                print('Scraped date is an empty string!')
+                return datetime.date.today().strftime('%Y-%m-%d')
             return data[0:10]
         elif self.site == 'marketplace':
             return self._date_from_words_marketplace(data)
