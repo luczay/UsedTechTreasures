@@ -2,7 +2,8 @@ import pandas as pd
 from time import sleep
 from selenium import webdriver
 import constants
-from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, StaleElementReferenceException
+from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, \
+    StaleElementReferenceException
 from selenium.webdriver.chrome.options import Options
 from scrape import Scrape
 
@@ -60,6 +61,7 @@ class ScrapeHardverapro(Scrape):
         except TimeoutException:
             pass
 
+        sleep(3)
         self._find_by_xpath(driver, '(//span[@class="fas fa-chevron-down"])[3]').click()
         self._find_by_xpath(driver, '//*[contains(text(), "olcsók")]').click()
 
@@ -90,21 +92,30 @@ class ScrapeHardverapro(Scrape):
                 if 'hardverapro.hu' not in element.get_attribute('href'):
                     continue
 
-                sleep(1)
-                try:
-                    element.click()
-                except ElementClickInterceptedException:
-                    driver.execute_script('arguments[0].click()', element)
-                except StaleElementReferenceException:
-                    sleep(2)
-                    driver.execute_script('arguments[0].click()', element)
+                time = 1
+                for click in range(3):
+                    sleep(time)
+                    time += 0.5
+                    try:
+                        element.click()
+                    except ElementClickInterceptedException:
+                        try:
+                            driver.execute_script('arguments[0].click()', element)
+                        except StaleElementReferenceException:
+                            continue
+                    except StaleElementReferenceException:
+                        continue
 
-                self._find_by_xpath(driver, '//a[@title="Kattints a teljes mérethez!"]')
+                try:
+                    self._find_by_xpath(driver, '//a[@title="Kattints a teljes mérethez!"]')
+                except TimeoutException:
+                    self._find_by_xpath(driver, '//a[@title="Kattints a teljes mérethez!"]')
+
                 df.loc[len(df.index)] = [self._get_data('name'), self._get_data('link'),
                                          self._get_data('price'), self._get_data('listed'),
                                          self._get_data('site'), self._get_data('description')]
 
-                # Listing start's from zero
+                # Listing starts from zero
                 if listing + 1 == self.stop:
                     driver.quit()
                     return df
