@@ -55,19 +55,20 @@ function scrape() {
     }
 
     // Estimate the scraping time for each website based on the number of products to be scraped
-    // est = load website/login/search/filter time + sleep times in an iteration * number of products
+    // est = correction * (website/login/search time + sleep times in an iteration * number of products)
+    // correction adjusts the time to be more precise
     var m_scraping_time_est = 0
     var j_scraping_time_est = 0 
     var h_scraping_time_est = 0
 
     if (marketplace != '') {
-        var m_scraping_time_est = 19 + (5 * number_of_products)
+        var m_scraping_time_est = 1.9 * (12 + (2 * number_of_products))
     }
     if (jofogas != '') {
-        j_scraping_time_est = 3 + (2 * number_of_products)
+        j_scraping_time_est = 2 * (2 + (2 * number_of_products))
     }
     if (hardverapro != '') {
-        var h_scraping_time_est = 6 + (2 * number_of_products)
+        var h_scraping_time_est = 2 * (7 + (3 * number_of_products))
     }
 
     var scraping_time_est = m_scraping_time_est + j_scraping_time_est + h_scraping_time_est
