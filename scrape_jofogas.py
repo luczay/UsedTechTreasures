@@ -81,7 +81,7 @@ class ScrapeJofogas(Scrape):
 
             listing_elements = self._find_by_xpath(driver, '//img[@loading="lazy"]', True)
             for listing in range(len(listing_elements)):
-                # Should make a new list everytime because the site reloads in each iteration
+                # It's necessary to create a new list in each iteration due to the site reloading
                 element = self._find_by_xpath(driver, '//img[@loading="lazy"]', True)[listing]
 
                 if 'jofogas.hu' not in element.get_attribute('src'):
@@ -102,7 +102,7 @@ class ScrapeJofogas(Scrape):
                                          self._get_data('price'), self._get_data('listed'),
                                          self._get_data('site'), self._get_data('description')]
 
-                # Listing start's from zero
+                # Listing starts from zero
                 if listing + 1 == self.stop:
                     driver.quit()
                     return df
