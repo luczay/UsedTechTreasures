@@ -1,5 +1,4 @@
 from time import sleep
-
 import pandas as pd
 from selenium import webdriver
 from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException
