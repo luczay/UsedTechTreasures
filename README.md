@@ -42,9 +42,6 @@ Project is: considered complete, but I'm still working on it from time to time t
 ## Room for Improvement
 
 Room for improvement:
+- Enhance the hardverapro scraping process to reduce the frequency of errors
 - Improve the speed of scraping
-- Enhance the accuracy of scraping time estimates
 - Improve the handling of unexpected scraper errors
-
-To do:
-- Known issue is that the program raises an error when it is unable to scrape the desired number of results, I'm planning to fix it in the near future 
