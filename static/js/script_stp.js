@@ -68,7 +68,7 @@ function scrape() {
         j_scraping_time_est = 2 * (2 + (2 * number_of_products))
     }
     if (hardverapro != '') {
-        var h_scraping_time_est = 2 * (7 + (3 * number_of_products))
+        var h_scraping_time_est = 2.1 * (7 + (3 * number_of_products))
     }
 
     var scraping_time_est = m_scraping_time_est + j_scraping_time_est + h_scraping_time_est
