@@ -7,8 +7,8 @@ from selenium.common.exceptions import ElementClickInterceptedException, Timeout
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 
-import constants
-from scrape import Scrape
+from static import constants
+from scrapers.scrape import Scrape
 
 
 class ScrapeJofogas(Scrape):

@@ -1,5 +1,5 @@
 import datetime
-import constants
+from static import constants
 from dateutil.relativedelta import relativedelta
 
 

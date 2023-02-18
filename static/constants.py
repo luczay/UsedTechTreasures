@@ -1,5 +1,5 @@
 columns = ['name', 'link', 'price', 'listed', 'site', 'description']
-driver_path = 'driver/chromedriver'
+driver_path = '../driver/chromedriver'
 months = {'január': '01', 'február': '02', 'március': '03', 'április': '04',
           'május': '05', 'június': '06', 'július': '07', 'augusztus': '08',
           'szeptember': '09', 'október': '10', 'november': '11', 'december': '12'}

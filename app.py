@@ -1,7 +1,7 @@
 import pandas as pd
 from flask import Flask, render_template, request, make_response
 from scraper import Scraper
-import constants
+from static import constants
 from database import Database
 
 app = Flask(__name__)

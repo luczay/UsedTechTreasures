@@ -1,8 +1,8 @@
-import constants
+from static import constants
 from data_cleaner import DataCleaner
-from scrape_hardverapro import ScrapeHardverapro
-from scrape_jofogas import ScrapeJofogas
-from scrape_marketplace import ScrapeMarketplace
+from scrapers.scrape_hardverapro import ScrapeHardverapro
+from scrapers.scrape_jofogas import ScrapeJofogas
+from scrapers.scrape_marketplace import ScrapeMarketplace
 from database import Database
 import pandas as pd
 

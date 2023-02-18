@@ -1,5 +1,5 @@
 import pandas as pd
-import constants
+from static import constants
 from abc import ABC, abstractmethod
 from typing import Union
 from time import sleep

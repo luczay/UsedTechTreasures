@@ -1,11 +1,11 @@
 import pandas as pd
 from time import sleep
 from selenium import webdriver
-import constants
+from static import constants
 from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException, \
     StaleElementReferenceException
 from selenium.webdriver.chrome.options import Options
-from scrape import Scrape
+from scrapers.scrape import Scrape
 
 
 class ScrapeHardverapro(Scrape):
