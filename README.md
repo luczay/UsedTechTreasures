@@ -32,7 +32,12 @@ It was built using Flask, Selenium, JQuery, Bootstrap, and MySQL.
 
 
 ## Screenshots
-Later
+![Example screenshot 1](./screenshots/Screenshot1.png)
+![Example screenshot 2](./screenshots/Screenshot2.png)
+![Example screenshot 3](./screenshots/Screenshot3.png)
+![Example screenshot 4](./screenshots/Screenshot4.png)
+![Example screenshot 5](./screenshots/Screenshot5.png)
+![Example screenshot 6](./screenshots/Screenshot6.png)
 
 
 ## Project Status
