@@ -22,7 +22,7 @@ class ScrapeHardverapro(Scrape):
     def __init__(self, product_name: str, price_min: int, price_max: int, stop: int):
         options = Options()
         options.add_argument('window-size=1980,1080')
-        options.add_argument('headless=true')
+        # options.add_argument('headless=true')
 
         self.driver = webdriver.Chrome(options=options, executable_path=constants.driver_path)
         self.product_name = product_name
@@ -140,10 +140,11 @@ class ScrapeHardverapro(Scrape):
             elif name_of_data == 'price':
                 return self._find_by_xpath(driver, '//h2[contains(text(), "Ft")]', wait=4).text
             elif name_of_data == 'listed':
-                return self._find_by_xpath(driver, '//span[@data-original-title="Feladás időpontja"]', wait=4).text
+                return self._attempt_repetitively(driver=driver, selector_type='xpath',
+                                                  select_str='//span[@data-original-title="Feladás időpontja"]')
             elif name_of_data == 'site':
                 return 'hardverapro'
             elif name_of_data == 'description':
-                return self._find_by_xpath(driver, '//p[@class="mgt0"]', wait=4).text
+                return self._attempt_repetitively(driver=driver, selector_type='xpath', select_str='//p[@class="mgt0"]')
         except TimeoutException:
             return ''
