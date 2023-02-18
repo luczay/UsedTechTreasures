@@ -88,7 +88,8 @@ class ScrapeMarketplace(Scrape):
         listing_elements = self._find_by_xpath(driver, '//a[contains(@href, "marketplace")]//img', True)
 
         for listing in range(len(listing_elements)):
-            element = listing_elements[listing]
+            element = listing_elements = self._find_by_xpath(driver,
+                                                             '//a[contains(@href, "marketplace")]//img', True)[listing]
             driver.execute_script('arguments[0].scrollIntoView(true)', element)
 
             if 'scontent' not in element.get_attribute('src'):
@@ -140,14 +141,7 @@ class ScrapeMarketplace(Scrape):
             elif name_of_data == 'site':
                 return 'marketplace'
             elif name_of_data == 'description':
-                description = self._find_by_xpath(driver, '//ul/following-sibling::div//div//span', wait=4).text
-
-                time = 1
-                while (description is None or description == '') and time < 6:
-                    sleep(time)
-                    description = self._find_by_xpath(driver, '//ul/following-sibling::div//div//span', wait=4).text
-                    time += 1
-
-                return description
+                return self._attempt_repetitively(driver=driver, selector_type='xpath',
+                                                  select_str='//ul/following-sibling::div//div//span')
         except TimeoutException:
             return ''
