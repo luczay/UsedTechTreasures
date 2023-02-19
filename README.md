@@ -1,6 +1,6 @@
 # UsedTechTreasures 
 A Python web scraper that searches the top three (Hungarian) second-hand tech websites for a specified product. 
-It was built using Flask, Selenium, JQuery, Bootstrap, and MySQL.
+It was built using Flask, Selenium, Pandas, JQuery, Bootstrap, and MySQL.
 
 ## Table of Contents
 * [General Info](#general-information)
